@@ -9,6 +9,7 @@ CREATE TABLE raw_customers (
     customer_state TEXT
 );
 
+
 DROP TABLE IF EXISTS raw_orders;
 CREATE TABLE raw_orders (
     order_id TEXT,
