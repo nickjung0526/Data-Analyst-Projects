@@ -1,7 +1,8 @@
--- This is an example of CTE, temp mini-table to run at exact moment of query
+
 WITH delivery_categorization AS (
 SELECT
     order_id,
+    customer_id,
     order_status,
     CASE 
         WHEN order_delivered_customer_date::TIMESTAMP > order_estimated_delivery_date::TIMESTAMP
@@ -14,16 +15,20 @@ WHERE order_status = 'delivered'
 )
 --how many late vs on time 
 SELECT
-    delivery_categorization.delivery_status,
-    COUNT(*) as total_orders, --aggregate
-    
+    public.raw_customers.customer_state,
+    COUNT(*) as total_late_orders, --aggregate
     ROUND(AVG(public.raw_order_reviews.review_score::NUMERIC), 2) AS average_review_score
-
 FROM delivery_categorization
 
-LEFT JOIN public.raw_order_reviews
+-- Join reviews to get the scores
+LEFT JOIN public.raw_order_reviews 
     ON delivery_categorization.order_id = public.raw_order_reviews.order_id
 
+-- Join customers to get states
+LEFT JOIN public.raw_customers
+    ON delivery_categorization.customer_id = public.raw_customers.customer_id
+
+WHERE delivery_categorization.delivery_status = 'Late'
 GROUP BY 1; 
 
 
