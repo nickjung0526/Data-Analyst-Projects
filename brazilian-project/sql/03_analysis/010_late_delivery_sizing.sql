@@ -23,7 +23,7 @@ FROM delivery_categorization
 LEFT JOIN public.raw_order_reviews
     ON delivery_categorization.order_id = public.raw_order_reviews.order_id
 
-GROUP BY 1;
+GROUP BY 1; 
 
 
 

@@ -15,4 +15,3 @@ failed_count,
 NULL,
 'price should be >= 0 and not null'
 from summary;
-

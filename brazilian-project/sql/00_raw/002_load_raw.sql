@@ -20,4 +20,4 @@ COUNT(*) FROM raw_order_items
 UNION ALL SELECT 'raw_order_reviews',
 COUNT(*) FROM raw_order_reviews;
 
-
+ 

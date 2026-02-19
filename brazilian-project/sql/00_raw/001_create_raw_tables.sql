@@ -49,4 +49,4 @@ CREATE TABLE raw_order_reviews (
 );
 
 COMMIT;
-
+ 
