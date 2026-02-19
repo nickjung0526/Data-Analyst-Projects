@@ -11,13 +11,19 @@ SELECT
 FROM public.raw_orders
 WHERE order_status = 'delivered'
 )
-
-
 --how many late vs on time 
 SELECT
-    delivery_status,
-    COUNT(*) as total_orders --aggregate
+    delivery_categorization.delivery_status,
+    COUNT(*) as total_orders, --aggregate
+    
+    ROUND(AVG(public.raw_order_reviews.review_score::NUMERIC), 2) AS average_review_score
+
 FROM delivery_categorization
+
+LEFT JOIN public.raw_order_reviews
+    ON delivery_categorization.order_id = public.raw_order_reviews.order_id
+
 GROUP BY 1;
+
 
 

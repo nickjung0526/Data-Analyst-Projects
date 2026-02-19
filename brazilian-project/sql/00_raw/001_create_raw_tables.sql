@@ -36,5 +36,17 @@ CREATE TABLE raw_order_items (
 
 -- build the others later, which include raw_products, raw_sellers, raw_order_reviews, raw_geolocation, raw_category_translation
 
+DROP TABLE IF EXISTS raw_order_reviews;
+
+CREATE TABLE raw_order_reviews (
+    review_id TEXT,
+    order_id TEXT,
+    review_score TEXT,
+    review_comment_title TEXT,
+    review_comment_message TEXT,
+    review_creation_date TEXT,
+    review_answer_timestamp TEXT
+);
+
 COMMIT;
 
