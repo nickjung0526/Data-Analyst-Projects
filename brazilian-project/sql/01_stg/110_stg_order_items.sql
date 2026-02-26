@@ -13,3 +13,6 @@ FROM public.raw_order_items;
 
 
 select * from stg.stg_order_items limit 20
+
+
+
