@@ -15,3 +15,4 @@ I set up a SQL-first analytics pipeline in PostgreSQL analyzing ~100k Olist orde
 ## Key Findings
 * **Late delivery is strongly associated with worse reviews:** I labeled each order as "On Time" or "Late" (evaluating `order_delivered_customer_date > order_estimated_delivery_date`) and found a significant drop in average review scores for delayed orders.
 * **Delays are concentrated geographically:** I grouped
+* Late deliveries actively destroy customer retention: Conducted a cohort analysis using Window Functions (LEAD) to track repeat purchase behavior. Discovered that customers with on-time deliveries have a 3.41% repeat purchase rate, compared to just 2.80% for those who experience delays. This means poor logistic causes a ~ 21% relative drop in customer retention
