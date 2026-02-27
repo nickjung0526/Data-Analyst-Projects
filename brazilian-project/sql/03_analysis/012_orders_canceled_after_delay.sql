@@ -1,6 +1,8 @@
 
 -- This series uses join to use the customer_id and assign to the unique_customer_id,
 -- then use join of raw_orders to see how many reorders they do.
+
+CREATE VIEW delivery_performance_metrics AS
 WITH order_base AS (
     SELECT
         raw_orders.order_id,
@@ -37,7 +39,7 @@ SELECT
 repeat_purchase_rate_percent,
 
 
-    ROUND(AVG(EXTRACT(DAY FROM( next_purchase_date - purchase_date))::NUMERIC),2 ) AS
+    ROUND(AVG(EXTRACT(DAY FROM(next_purchase_date - purchase_date))::NUMERIC),2 ) AS
     avg_days_to_repurchase
 
     FROM order_sequence
